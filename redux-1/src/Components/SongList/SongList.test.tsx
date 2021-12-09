@@ -15,7 +15,7 @@ describe("Song List Testing Suite", () => {
   });
 
   describe("Song List Default Elements", () => {
-    it("Should render a Customer booking form", () => {
+    it("Should render a Song Container", () => {
       const { getByText, getByRole } = render(component);
 
       // const formHeader = getByText("Check Room Availability");
