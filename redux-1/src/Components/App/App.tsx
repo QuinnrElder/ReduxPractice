@@ -6,8 +6,12 @@ type AppProps = {}
 
 export const App: FunctionComponent<AppProps> = ({ }) => {
   return (
-    <div>
-      <SongList />
+    <div className="ui container grid">
+      <div className="row">
+        <div className="column eight wide">
+          <SongList />
+        </div>
+      </div>
     </div>
   )
 };
