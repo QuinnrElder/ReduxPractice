@@ -6,6 +6,9 @@ import { connect } from 'react-redux'
 //TYPES
 import { SongViewModel, StateViewModel } from '../../Types/SongTypes';
 
+//ACTIONS
+import { selectSong } from "../../Actions/index"
+
 
 class SongList extends Component {
 
@@ -13,8 +16,8 @@ class SongList extends Component {
     return props.songs.map((song: SongViewModel) => {
       return (
         <div key={song.id} data-testid="Song-Wrapper" className="item">
-          <div className="right floated content">
-            <button data-testid="Select-Song-Button" className="ui button primary">Select</button>
+          <div className="right floated content" data-testid="Button-Wrapper">
+            <button onClick={() => props.selectSong(song)} data-testid="Select-Song-Button" className="ui button primary">Select</button>
           </div>
           <div className="content" data-testid="Song-Name">
             {song.songName}
@@ -28,17 +31,17 @@ class SongList extends Component {
 
     let props = this.props
     return (
-      <div className="ui divided list" data-testid="Songs-Container">
-        {this.renderSongList(props)}
-      </div >
+      <Fragment>
+        <div className="ui divided list" data-testid="Songs-Container">
+          {this.renderSongList(props)}
+        </div >
+      </Fragment>
     );
   }
 }
 
 const mapStateToProps = (state: StateViewModel) => {
-  return {
-    songs: state.songs
-  }
+  return state
 }
 
-export default connect(mapStateToProps)(SongList)
+export default connect(mapStateToProps, { selectSong })(SongList)
