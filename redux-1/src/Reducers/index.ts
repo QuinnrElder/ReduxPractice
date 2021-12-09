@@ -5,7 +5,7 @@ import {
   SongViewModel,
   SongActionViewModel,
   SongActionTypeViewModel
-} from "../Components/Types/SongTypes";
+} from "../Types/SongTypes";
 
 //REDUCERS 
 export const songsReducer = () => {
@@ -34,10 +34,18 @@ export const songsReducer = () => {
 }
 
 export const selectedSongReducer = (selectedSong:SongViewModel, action:SongActionViewModel) => {
+
+  let verifiedSong
+  if(typeof selectedSong === 'undefined') {
+    verifiedSong = null
+  } else {
+    verifiedSong = selectedSong
+  }
+
   if(action.type === SongActionTypeViewModel.SONG_SELECTED) {
     return action.payload
   }
-  return selectedSong
+  return verifiedSong 
 }
 
 export default combineReducers({songs:songsReducer, selectedSong:selectedSongReducer},)

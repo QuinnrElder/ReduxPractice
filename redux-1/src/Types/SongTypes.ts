@@ -12,3 +12,8 @@ export type SongActionViewModel = {
 export enum SongActionTypeViewModel {
   'SONG_SELECTED'
 }
+
+export type StateViewModel = {
+  songs: SongActionViewModel[]
+  selectedSong: SongActionViewModel
+}
