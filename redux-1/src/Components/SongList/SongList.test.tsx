@@ -2,8 +2,6 @@ import React from "react";
 import SongList from "./SongList";
 import { fireEvent, render } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
-import { MemoryRouter } from "react-router-dom";
-import { JsxElement } from "typescript";
 import { Provider } from "react-redux";
 import { createStore } from "redux";
 import reducers from "../../Reducers";
@@ -80,9 +78,8 @@ describe("Song List Testing Suite", () => {
     it("Should be able to select a Song", () => {
       const { getByTestId } = render(router);
 
-      const song_container = getByTestId("Songs-Container");
-      expect(song_container).toBeInTheDocument();
-
+      const button = getByTestId("Select-Song-Button-1");
+      fireEvent.click(button);
     });
   })
 
