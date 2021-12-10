@@ -17,7 +17,7 @@ class SongList extends Component {
       return (
         <div key={song.id} data-testid="Song-Wrapper" className="item">
           <div className="right floated content" data-testid="Button-Wrapper">
-            <button onClick={() => props.selectSong(song)} data-testid="Select-Song-Button" className="ui button primary">Select</button>
+            <button onClick={() => props.selectSong(song)} data-testid={`Select-Song-Button-${song.id}`} className="ui button primary">Select</button>
           </div>
           <div className="content" data-testid="Song-Name">
             {song.songName}
