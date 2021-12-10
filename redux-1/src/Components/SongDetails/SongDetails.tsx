@@ -13,7 +13,7 @@ import { StateViewModel } from '../../Types/SongTypes';
 export const SongDetails: FunctionComponent = ({ selectedSong }: any) => {
 
   if (!selectedSong) {
-    return <div>Please Select a Song!</div>
+    return <div data-testid="Default-Message">Please Select a Song!</div>
   }
 
   return (
