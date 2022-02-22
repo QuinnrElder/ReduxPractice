@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 
 //REDUX
 import { useDispatch } from "react-redux";
@@ -12,10 +12,19 @@ import {ADD_TODO} from "../../Redux/actions"
 //THIS.COMPONENT
 export function AddTodo() {
 	const [title, setTitle] = useState("");
+	const titleFieldRef = useRef(null)
+	const dispatch = useDispatch()
 
   const addTodoItem = () => {
-    //useDispatch
-    //ADD_TODO
+		if(!title) return
+    dispatch({
+			type: ADD_TODO,
+			payload: {
+				title: title,
+			}
+		})
+		setTitle(null)
+		titleFieldRef.current.value = ""
   }
 
 	return (
@@ -26,6 +35,7 @@ export function AddTodo() {
 				label="Add a new todo"
 				varient="filled"
 				onChange={(event) => setTitle(event.target.value)}
+				inputRef={titleFieldRef}
 			/>
 
 			<Button
