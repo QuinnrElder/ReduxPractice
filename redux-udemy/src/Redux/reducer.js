@@ -6,6 +6,10 @@ import { ADD_TODO, TOGGLE_COMPLETED, DELETE_TODO, FAVORITE_TODO } from "../Redux
 //ID GENERATOR
 import shortid from "shortid";
 
+const saveLocalStorage = (state) => {
+	window.localStorage.setItem("todo-list", JSON.stringify(state))
+}
+
 //REDUCER
 function reducer(state = initialState, action) {
 	switch (action.type) {
@@ -18,6 +22,7 @@ function reducer(state = initialState, action) {
 					{ title: title, id: shortid(), completed: false, important: false },
 				],
 			};
+			saveLocalStorage(newState)
 			return newState;
 		}
 		case TOGGLE_COMPLETED: {
@@ -32,6 +37,7 @@ function reducer(state = initialState, action) {
 				...state,
 				todos: newTodos,
 			};
+			saveLocalStorage(newState)
 			return newState;
 		}
 		case DELETE_TODO: {
@@ -41,6 +47,7 @@ function reducer(state = initialState, action) {
 				...state,
 				todos: newTodos,
 			};
+			saveLocalStorage(newState)
 			return newState;
 		}
 		case FAVORITE_TODO: {
@@ -55,6 +62,7 @@ function reducer(state = initialState, action) {
 				...state,
 				todos: newTodos,
 			};
+			saveLocalStorage(newState)
 			return newState;
 		}
 		default:
